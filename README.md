@@ -15,4 +15,4 @@ GET API address: http://localhost:3000/v1/user/{id}
 
 Postman API tool is leveraged to trigger the API's to make calls to the database table.
 
-In VS code open the project folder and run "npm install" command to install the node.js dependencies. To run the application open the terminal in the VS code and run "npm start" command. This will create a server in local instance on port number 3000(default). 
+In VS code open the project folder and run "npm install" command to install the node.js dependencies. To run the application open the terminal in the VS code and run "npm start" command. This will create a server in local instance on port number 3000(default). .
