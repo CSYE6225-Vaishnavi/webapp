@@ -1,18 +1,53 @@
-Assignment 1
+#Assignment1
 
-Implemented node.js framework to develop back-end application and Postgres SQL database to store user data.
+In this assignment we are creating a backend application which performs CRUD operations of a user using the help of
+different api's.
 
-As per the requirements 3 API's are created to create, use and modify database information with the help of back-end application.
+The folder structure is as follows:
+The main script where the server is starting is in index.js.
+The routes of the api's are in routes folder
+The database schema is present in models/userModel.
+The api logic is present in controllers/user.js
+The db details are present in db.js and .env file contains the environment details.
+Tests are written in tests/test.js
 
-1. POST : User is expected to submit his first_name, last_name, email-id(used as username) and password. This information is then pushed to the database to users table. ID, account_created, account_updated timestamp fields are updated with system time when a user is created with the API
-POST API address: http://localhost:3000/v1/user
+The controller contains 3 main methods:
+createUser which is a POST method and takes in firstname, lastname, username and password.
+getUser which is a GET method and takes userid as a parameter and fetches the data of the user
+editUser which is a PUT method and also takes the userid parameter to update the data.
 
-2. PUT : User will be given the option to update his information in the database. email-id(username) is an exception. To update the information user will have to authenticate with their username and password. Errors will be triggered accordingly if the information pushed by user is incorrect.
-PUT API address: http://localhost:3000/v1/user/{id}
+the GET and PUT method are authenticated that means they require authentication to work.
 
-3. GET : API will return the user details that are stored in the user table in the database. User will be required to complete basic authentication with his username and password to view his record.
-GET API address: http://localhost:3000/v1/user/{id}
+In this assignment we are using sequelize orm instead of using queries to create tables, insert data and fetch values.
 
-Postman API tool is leveraged to trigger the API's to make calls to the database table.
+We test the api's using Postman.
 
-In VS code open the project folder and run "npm install" command to install the node.js dependencies. To run the application open the terminal in the VS code and run "npm start" command. This will create a server in local instance on port number 3000(default). 
+we have also created a .github/workflows folder/file which contains the yml file. The yml file contains the workflow structure which allows github to know whenever we push the code to our branch.
+
+Whenever a pull request us created from our feature branch in our fork to the main branch in our org, workflow is triggered and checks if all the test cases are passing.
+
+Only if all test cases are passing, then we should be able to merge our changes.
+
+#Assignment 2
+
+In this assignment we have added a ProductModel where it contains the fields name, description, manufacturer, sku and quantity.
+
+There are 5 apis being used here and the endpoints are as follows
+
+POST: http://localhost:3000/v1/product
+
+GET: http://localhost:3000/v1/product/productId
+
+PUT: http://localhost:3000/v1/product/productId
+
+PATCH: http://localhost:3000/v1/product/productId
+
+DELETE: http://localhost:3000/v1/product/productId
+
+SOme requirements for this assignment are-
+
+-Only authenticated users are allowed to add products
+-Only people who added a product can update and delete the product
+-Anyone can use the get method to fetch products.
+
+
