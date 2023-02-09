@@ -183,7 +183,7 @@ const updateProduct = (request, response) => {
                                         response.status(204).send('Data is Updated');
                                         
                                      }).catch((error)=> {
-                                         response.status(400).send("Error updating Data")
+                                         response.status(400).send("Error updating Data.Quantity should be in between 0 and 100")
                                      });
             
                                     }
@@ -271,7 +271,7 @@ const editProduct = (request,response) => {
                                             response.status(204).send('Data is Updated');
                                             
                                          }).catch((error)=> {
-                                             response.status(400).send("Error updating Data")
+                                             response.status(400).send("Error updating Data.Quantity should be in between 0 and 100'")
                                          });
                                     }
                                 })
@@ -282,7 +282,7 @@ const editProduct = (request,response) => {
                                     response.status(204).send('Data is Updated');
                                     
                                  }).catch((error)=> {
-                                     response.status(400).send("Error updating Data")
+                                     response.status(400).send("Error updating Data.Quantity should be in between 0 and 100'")
                                  });
         
                                 }
