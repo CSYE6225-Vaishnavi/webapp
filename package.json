@@ -2,10 +2,10 @@
   "name": "webapp",
   "version": "1.0.0",
   "description": "assignment 1",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha tests/test.js",
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
