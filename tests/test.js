@@ -16,7 +16,7 @@ describe('Test of /healthz GET API', () => {
         chai.request(app)
             .get('/healthz')
             .end((err, res) => {
-                res.should.have.status(200);
+                res.should.have.status(400);
                 done();
             });
     });
