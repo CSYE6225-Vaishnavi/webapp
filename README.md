@@ -48,6 +48,6 @@ SOme requirements for this assignment are-
 
 -Only authenticated users are allowed to add products
 -Only people who added a product can update and delete the product
--Anyone can use the get method to fetch products.
+-Anyone can use the get method to fetch products
 
 
