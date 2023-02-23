@@ -47,10 +47,7 @@ build {
     inline = ["sudo mkdir -p /home/ec2-user/scripts", "sudo chown -R ec2-user:ec2-user /home/ec2-user/scripts", "sudo chmod -R 755 /home/ec2-user/scripts"]
   }
 
-  provisioner "file" {
-    destination = "/tmp/node.service"
-    source      = "../service/node.service"
-  }
+  
 
   provisioner "file" {
     destination = "/home/ec2-user/webapp.zip"
@@ -65,6 +62,10 @@ build {
   provisioner "file" {
     destination = "/home/ec2-user/scripts/node.sh"
     source      = "tmp/node.sh"
+  }
+  provisioner "file" {
+    destination = "/tmp/node.service"
+    source      = "../service/node.service"
   }
 
   provisioner "shell" {
