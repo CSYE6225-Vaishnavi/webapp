@@ -69,6 +69,10 @@ build {
   }
 
   provisioner "shell" {
+    inline = ["sudo mv /tmp/node.service /etc/systemd/system/node.service", "sudo systemctl daemon-reload", "sudo systemctl enable node.service", "sudo systemctl start node.service"]
+  }
+
+  provisioner "shell" {
     inline = ["sudo chmod o+x /home/ec2-user/scripts/node.sh", "sudo /home/ec2-user/scripts/node.sh", "sudo chmod o+x /home/ec2-user/scripts/postgres.sh", "sudo /home/ec2-user/scripts/postgres.sh"]
   }
 
