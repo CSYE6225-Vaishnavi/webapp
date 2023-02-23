@@ -13,7 +13,7 @@ const {Sequelize} = require('sequelize');
 const sequelize = new Sequelize("mydb", "postgres", "Mohanrao06", {
   host: "localhost",
   dialect: 'postgres',
-  port:"5433",
+  port:"5432",
 });
 
 
