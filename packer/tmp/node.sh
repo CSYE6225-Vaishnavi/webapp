@@ -15,12 +15,3 @@ cd webapp/
 sudo npm install
 sudo npm install bcrypt
 
-
-sleep 10
-sudo mv /tmp/node.service /etc/systemd/system/node.service
-
-sudo systemctl daemon-reload
-
-sudo systemctl enable node.service
-
-sudo systemctl start node.service
