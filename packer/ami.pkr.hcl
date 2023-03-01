@@ -80,4 +80,3 @@ build {
     inline = ["rpm -Va --nofiles --nodigest"]
   }
 
-}
