@@ -26,7 +26,7 @@ variable "ssh_username" {
 
 variable "demo_accountid" {
   type = string
-  default = "181600461636"
+  default = "640375653027"
 }
 
 data "amazon-ami" "awsdev_ami" {
@@ -77,7 +77,7 @@ build {
 
     provisioner "file" {    
     destination = "/home/ec2-user/script/"
-    source      = "../webApp.zip"
+    source      = "../webapp.zip"
   }
 
     provisioner "file" {

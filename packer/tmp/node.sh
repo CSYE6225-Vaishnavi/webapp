@@ -17,7 +17,7 @@ sudo yum install -y nodejs
 sudo chmod 755 /home/ec2-user/script
 sudo chown -R ec2-user:ec2-user /home/ec2-user
 cd /home/ec2-user/script
-sudo unzip /home/ec2-user/script/webApp.zip
+sudo unzip /home/ec2-user/script/webapp.zip
 
 sudo chown ec2-user:ec2-user script
 sudo su
