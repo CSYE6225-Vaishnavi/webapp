@@ -46,3 +46,19 @@ The RESTful API Endpoints implemented for products are
 3. PUT/PATCH - to update the values like name, description, sku, quantity and manufacturer PUT/PATCH is used. sku should be a unique value. Basic authorization should happen successfully when a user wants to update the values. API address will be http://{public_IP_of_EC2}:3000/v1/product/{sku}. The values that need to be updated should be given in the json format. The response for this call is the 'Data is Updated' message. Only user who creates the product can update the details
 
 4. DELETE - to delete the row in the table products basic authentication have to be successful and only user who creates the product can delete it. API address will be http://{public_IP_of_EC2}:3000/v1/product/{sku}.
+
+Assignment5
+
+In this assignment we are adding 4 new routes in our web application
+
+POST : v1/product/productID/image -> to post a new image
+
+GET : v1/product/productID/image -> to get all images
+
+GET : v1/product/productID/image/imageId -> to get specific image
+
+DELETE : v1/product/productID/image/imageId -> to delete a specific image
+
+When we post and delete images , they should get uploaded and deleted in the S3 bucket in Aws ec2 instance
+
+This assignment should ensure that our app runs in the ec2 instance and get connected to the rds instance.
