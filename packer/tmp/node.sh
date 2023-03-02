@@ -1,3 +1,9 @@
+#!/bin/bash
+
+sleep 30
+
+
+
 sudo yum update -y
 
 
@@ -8,10 +14,15 @@ sudo yum install -y nodejs
 
 
 
-sudo yum install unzip
-unzip /home/ec2-user/webapp.zip
-sudo chmod 755 webapp/
-cd webapp/ 
+sudo chmod 755 /home/ec2-user/script
+sudo chown -R ec2-user:ec2-user /home/ec2-user
+cd /home/ec2-user/script
+sudo unzip /home/ec2-user/script/webApp.zip
+
+sudo chown ec2-user:ec2-user script
+sudo su
+cd /home/ec2-user/script
 sudo npm install
 sudo npm install bcrypt
+sudo npm update -g node-gyp
 
