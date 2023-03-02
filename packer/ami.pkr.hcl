@@ -1,20 +1,38 @@
+
 variable "aws_access_key" {
   type    = string
-  default = "AKIA2SLQTYCUL2V37XFN"
+ // default = env.AWS_ACCESS_KEY_ID
 }
 
 variable "aws_region" {
   type    = string
-  default = "us-east-1"
+ // default = env(AWS_REGION)
 }
 
 variable "aws_secret_key" {
   type    = string
-  default = "lkC8ChMPRRRAKU5wHST+bjbtBiR9+6SYjz3SF2M6"
+  //default = env(AWS_SECRET_ACCESS_KEY)
 }
 
-data "amazon-ami" "awsdev-ami" {
+variable "source_ami" {
+  type = string
+  default = "ami-0dfcb1ef8550277af"
+}
+
+variable "ssh_username" {
+  type = string
+  default = "ec2-user"
+}
+
+variable "demo_accountid" {
+  type = string
+  default = "640375653027"
+}
+
+data "amazon-ami" "awsdev_ami" {
+  // id = "${var.source_ami}"
   access_key = "${var.aws_access_key}"
+//access_key = env(AWS_ACCESS_KEY_ID)
   filters = {
     name                = "amzn2-ami-hvm-*"
     root-device-type    = "ebs"
@@ -23,57 +41,55 @@ data "amazon-ami" "awsdev-ami" {
   most_recent = true
   owners      = ["amazon"]
   region      = "${var.aws_region}"
+  //region = env(AWS_REGION)
   secret_key  = "${var.aws_secret_key}"
+  //secret_key = env(AWS_SECRET_ACCESS_KEY)
 }
 
-source "amazon-ebs" "ami" {
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
+
+source "amazon-ebs" "Custom_AMI" {
   access_key    = "${var.aws_access_key}"
-  ami_name      = "webapp"
-  ami_users     = [640375653027]
+  ami_name      = "Aws_AMI-${local.timestamp}"
+  ami_users     = ["${var.demo_accountid}"]
   instance_type = "t2.micro"
   region        = "${var.aws_region}"
   secret_key    = "${var.aws_secret_key}"
-  source_ami    = "${data.amazon-ami.awsdev-ami.id}"
-  ssh_username  = "ec2-user"
+  source_ami    = "${data.amazon-ami.awsdev_ami.id}"
+  ssh_username  = "${var.ssh_username}"
   tags = {
-    Name = "AMI"
+    Name = "Custom AMI"
   }
 }
 
 build {
-  sources = ["source.amazon-ebs.ami"]
-
-  provisioner "shell" {
-    inline = ["sudo mkdir -p /home/ec2-user/scripts", "sudo chown -R ec2-user:ec2-user /home/ec2-user/scripts", "sudo chmod -R 755 /home/ec2-user/scripts"]
-  }
-
-  
+  sources = ["source.amazon-ebs.Custom_AMI"]
 
   provisioner "file" {
-    destination = "/home/ec2-user/webapp.zip"
-    source      = "../webapp.zip"
-  }
-
-  provisioner "file" {
-    destination = "/home/ec2-user/scripts/postgres.sh"
-    source      = "tmp/postgres.sh"
-  }
-
-  provisioner "file" {
-    destination = "/home/ec2-user/scripts/node.sh"
+    destination = "/tmp/node.sh"
     source      = "tmp/node.sh"
   }
+
+//  provisioner "file" {
+//   destination = "/tmp/postgresql.sh"
+//   source      = "tmp/postgresql.sh"
+//  }
+
   provisioner "file" {
     destination = "/tmp/node.service"
     source      = "../service/node.service"
   }
 
-  provisioner "shell" {
-    inline = ["sudo mv /tmp/node.service /etc/systemd/system/node.service", "sudo systemctl daemon-reload", "sudo systemctl enable node.service", "sudo systemctl start node.service"]
+  provisioner "file" {
+    destination = "/home/ec2-user/webApp.zip"
+    source      = "../webApp.zip"
   }
 
   provisioner "shell" {
-    inline = ["sudo chmod o+x /home/ec2-user/scripts/node.sh", "sudo /home/ec2-user/scripts/node.sh", "sudo chmod o+x /home/ec2-user/scripts/postgres.sh", "sudo /home/ec2-user/scripts/postgres.sh"]
+    inline = ["sudo chmod +x /tmp/node.sh", "sudo /tmp/node.sh", "sudo chmod +x /tmp/postgresql.sh", "sudo /tmp/postgresql.sh"]
   }
 
   provisioner "shell" {
