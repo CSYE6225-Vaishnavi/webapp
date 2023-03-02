@@ -84,12 +84,12 @@ build {
   }
 
   provisioner "file" {
-    destination = "/home/ec2-user/webApp.zip"
-    source      = "../webApp.zip"
+    destination = "/home/ec2-user/webapp.zip"
+    source      = "../webapp.zip"
   }
 
   provisioner "shell" {
-    inline = ["sudo chmod +x /tmp/node.sh", "sudo /tmp/node.sh", "sudo chmod +x /tmp/postgresql.sh", "sudo /tmp/postgresql.sh"]
+    inline = ["sudo chmod +x /tmp/node.sh", "sudo /tmp/node.sh"]
   }
 
   provisioner "shell" {
