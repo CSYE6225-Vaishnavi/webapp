@@ -4,7 +4,7 @@ The API's can be tested with the Postman with the correct routes as configured.
 
 Requirements and Description: The payload will be sent in JSON format in the body of the request. No UI has been implemented in this application.
 The API calls will return proper HTTP status codes
-A packer template is written in pkr.hcl format with the required provisioner files like the node.sh, postgres.sh to validate and build the packer with the configured local source directory and remote destination directory. Also added under provisioner files are the zip of the webapp and the systemd service file with the commands to execute and start the ec2 server for the ec2-user
+A packer template is written in pkr.hcl format with the required provisioner files like the node.sh, postgres.sh to validate and build the packer with the configured local source directory and remote destination directory. Also added under provisioner files are the zip of the webapp and the systemd service file with the commands to execute and start the ec2 server for the ec2-user.
 
 
 Steps to run the project:
