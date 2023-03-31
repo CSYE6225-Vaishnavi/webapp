@@ -53,7 +53,7 @@ userModel.sync().then((result) => {
   });
 }).catch((error) => {
    console.log('Error in creating user table');
-   logger.error('Error in creating user table');
+  // logger.error('Error in creating user table');
    console.log(error);
 });
 
