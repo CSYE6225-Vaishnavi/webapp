@@ -57,11 +57,11 @@ const createUser = (request, response) => {
 
         else if(result) {
             logger.error("Username already exists");
-            response.status(400).send('Username Already Exists');
+            response.status(400).send('User_name Already Exists');
         }
         else if(!checkValidEmail){
-            logger.warn("Email entered is Invalid");
-            response.status(400).send('Enter valid email');
+            logger.warn("Email_id entered is Invalid");
+            response.status(400).send('Enter valid email_id');
         }
      
         else {
@@ -264,7 +264,7 @@ const intermediateMethodToUpdate = (request, response, username) => {
 const getHealth = (request, response) => {
     logger.info("Health of the server is OK");
     metricCounter.increment("getHealth");
-    return response.status(200).json("Good Health");
+    return response.status(200).json("Health is ok");
 }
 
 
