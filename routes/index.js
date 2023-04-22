@@ -9,8 +9,8 @@ const imageRouter = require('./imageRouter');
  */
 
 const routes = (app) => {
-    app.use("/v1/user", userRouter);
-    app.use("/v1/product", productRouter);
+    app.use("/v2/user", userRouter);
+    app.use("/v2/product", productRouter);
    // app.use("/v1/product/:productId/image", imageRouter);
     app.use("/healthz",userRouter);
     app.use("/healthz",productRouter);
